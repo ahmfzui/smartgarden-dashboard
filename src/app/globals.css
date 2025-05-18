@@ -1,26 +1,59 @@
-@import "tailwindcss";
+/* Bootstrap sudah di-import di _app/layout.tsx atau _app.tsx */
+/* Animasi dan custom style tambahan */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.card-animate {
+  transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.2s;
+  will-change: transform;
+}
+.card-animate:hover {
+  transform: translateY(-6px) scale(1.035);
+  box-shadow: 0 10px 32px 0 rgba(60,180,120,0.18);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.status-badge {
+  display: inline-block;
+  padding: 0.35em 1em;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1em;
+  transition: background 0.2s, color 0.2s;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.status-badge.on {
+  background: linear-gradient(90deg, #32d47c 60%, #a8ff78 100%);
+  color: #165b32;
+  box-shadow: 0 2px 8px #a8ff78a0;
+}
+.status-badge.off {
+  background: #e6e6e6;
+  color: #888;
+}
+
+.btn-animate {
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 4px 16px 0 #58e7a830;
+}
+.btn-animate:active {
+  transform: scale(0.96);
+}
+
+.table-hover tbody tr:hover {
+  background: #e8ffe7 !important;
+  transition: background 0.2s;
+}
+
+.fade-in {
+  animation: fadeIn 1s cubic-bezier(.4,2,.6,1) forwards;
+  opacity: 0;
+}
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+/* Responsive tweaks */
+@media (max-width: 700px) {
+  .display-5 {
+    font-size: 2rem;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
